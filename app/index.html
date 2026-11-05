@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>Ojo Amigo</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Ojo Amigo</h1>
+    <p id="estado" role="status" aria-live="assertive">Pulse "Iniciar" para encender la cámara.</p>
+
+    <div class="visor">
+      <video id="video" playsinline muted aria-hidden="true"></video>
+      <canvas id="lienzo" aria-hidden="true"></canvas>
+    </div>
+
+    <div class="botones">
+      <button id="btnIniciar" class="grande">Iniciar</button>
+      <button id="btnEntorno" class="grande" disabled>Guía de entorno</button>
+      <button id="btnDescribir" class="grande" disabled>¿Qué hay frente a mí?</button>
+      <button id="btnLeer" class="grande" disabled>Leer texto</button>
+      <button id="btnDetener" class="grande peligro" disabled>Silencio</button>
+    </div>
+
+    <details>
+      <summary>Ajustes</summary>
+      <label>Velocidad de voz
+        <input id="velocidad" type="range" min="0.7" max="1.6" step="0.1" value="1.1">
+      </label>
+      <label>Sensibilidad (confianza mínima)
+        <input id="umbral" type="range" min="0.35" max="0.85" step="0.05" value="0.55">
+      </label>
+      <label><input id="vibrar" type="checkbox" checked> Vibrar ante obstáculos cercanos</label>
+    </details>
+
+    <p class="aviso">Prototipo de investigación. No reemplaza el bastón blanco, el perro guía
+      ni la orientación y movilidad. No usar como única ayuda al cruzar calles.</p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.20.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.3/dist/coco-ssd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/tesseract.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
